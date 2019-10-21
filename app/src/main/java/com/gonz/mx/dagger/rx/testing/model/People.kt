@@ -6,5 +6,11 @@ import com.google.gson.annotations.SerializedName
 data class People(
     @SerializedName("name")
     @Expose
-    val name: String
+    val name: String,
+    @SerializedName("hair_color")
+    @Expose
+    val hairColor: String,
+    @SerializedName("skin_color")
+    @Expose
+    val skinColor: String
 )

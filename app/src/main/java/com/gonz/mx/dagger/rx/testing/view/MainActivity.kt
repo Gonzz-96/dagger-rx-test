@@ -11,6 +11,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.AndroidSupportInjectionModule
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasAndroidInjector, MainContract.View {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, MainContract.View 
 
 
     override fun showToast(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+        view.text = s
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
