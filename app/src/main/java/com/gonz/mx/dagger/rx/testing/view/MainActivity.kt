@@ -13,18 +13,24 @@ import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
+class MainActivity : AppCompatActivity(), HasAndroidInjector, MainContract.View {
 
     @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
-    @Inject lateinit var injectedString: String
+    @Inject lateinit var presenter: MainContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Injecting dependencies
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(this, injectedString, Toast.LENGTH_SHORT).show()
+        presenter.searchPeople("1")
+    }
+
+
+    override fun showToast(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
